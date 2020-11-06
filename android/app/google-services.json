@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "311970819414",
+    "firebase_url": "https://acv-login.firebaseio.com",
+    "project_id": "acv-login",
+    "storage_bucket": "acv-login.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:311970819414:android:2a23e75828aee5776f7af7",
+        "android_client_info": {
+          "package_name": "com.example.acv_login_auth"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "311970819414-phgom3eloab6088pknd3e3ob3l74p9l7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC739Dr_Apz3hqWuPwLKYHcjMgZ3CLnHPk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "311970819414-phgom3eloab6088pknd3e3ob3l74p9l7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
