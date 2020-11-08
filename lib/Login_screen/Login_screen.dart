@@ -1,145 +1,151 @@
-import 'package:acv_login_auth/Login_screen/Home_screen.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class LoginScreen extends StatelessWidget {
-  final _phoneController = TextEditingController();
-  final _codeController = TextEditingController();
+final Color colors = Color(0xfffe9721);
 
-  Future<bool> loginUser(String phone, BuildContext context) async {
-    FirebaseAuth _auth = FirebaseAuth.instance;
-
-    _auth.verifyPhoneNumber(
-        phoneNumber: phone,
-        timeout: Duration(seconds: 60),
-        verificationCompleted: (AuthCredential credential) async {
-          Navigator.of(context).pop();
-
-          AuthResult result = await _auth.signInWithCredential(credential);
-
-          FirebaseUser user = result.user;
-
-          if (user != null) {
-            Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => HomeScreen(
-                          user: user,
-                        )));
-          } else {
-            print("Error");
-          }
-
-          //This callback would gets called when verification is done auto maticlly
-        },
-        verificationFailed: (AuthException exception) {
-          print(exception);
-        },
-        codeSent: (String verificationId, [int forceResendingToken]) {
-          showDialog(
-              context: context,
-              barrierDismissible: false,
-              builder: (context) {
-                return AlertDialog(
-                  title: Text("Give the code?"),
-                  content: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: <Widget>[
-                      TextField(
-                        controller: _codeController,
-                      ),
-                    ],
-                  ),
-                  actions: <Widget>[
-                    FlatButton(
-                      child: Text("Confirm"),
-                      textColor: Colors.white,
-                      color: Colors.blue,
-                      onPressed: () async {
-                        final code = _codeController.text.trim();
-                        AuthCredential credential =
-                            PhoneAuthProvider.getCredential(
-                                verificationId: verificationId, smsCode: code);
-
-                        AuthResult result =
-                            await _auth.signInWithCredential(credential);
-
-                        FirebaseUser user = result.user;
-
-                        if (user != null) {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => HomeScreen(
-                                        user: user,
-                                      )));
-                        } else {
-                          print("Error");
-                        }
-                      },
-                    )
-                  ],
-                );
-              });
-        },
-        codeAutoRetrievalTimeout: null);
-  }
-
+class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: SingleChildScrollView(
-      child: Container(
-        padding: EdgeInsets.all(32),
-        child: Form(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Text(
-                "Login",
-                style: TextStyle(
-                    color: Colors.lightBlue,
-                    fontSize: 36,
-                    fontWeight: FontWeight.w500),
-              ),
-              SizedBox(
-                height: 16,
-              ),
-              TextFormField(
-                decoration: InputDecoration(
-                    enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(8)),
-                        borderSide: BorderSide(color: Colors.grey[200])),
-                    focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(8)),
-                        borderSide: BorderSide(color: Colors.grey[300])),
-                    filled: true,
-                    fillColor: Colors.grey[100],
-                    hintText: "Mobile Number"),
-                controller: _phoneController,
-              ),
-              SizedBox(
-                height: 16,
-              ),
-              Container(
-                width: double.infinity,
-                child: FlatButton(
-                  child: Text("LOGIN"),
-                  textColor: Colors.white,
-                  padding: EdgeInsets.all(16),
-                  onPressed: () {
-                    final phone = _phoneController.text.trim();
-
-                    loginUser(phone, context);
-                  },
-                  color: Colors.blue,
-                ),
-              )
-            ],
+      body: Stack(
+        children: <Widget>[
+          Container(
+            decoration: BoxDecoration(
+                image: DecorationImage(
+                    image: AssetImage(
+                        'assets/White wall, yellow lamp, minimal, decoration, 950x1534 wallpaper.jpg'),
+                    fit: BoxFit.cover)),
           ),
-        ),
+          Container(
+            decoration: BoxDecoration(
+                gradient: LinearGradient(colors: [
+              Colors.transparent,
+              Colors.transparent,
+              Color(0xff161d27).withOpacity(0.9),
+              Color(0xff161d27),
+            ], begin: Alignment.topCenter, end: Alignment.bottomCenter)),
+          ),
+          Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: <Widget>[
+                Text(
+                  "Welcome!",
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 38,
+                      fontWeight: FontWeight.bold),
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                Text(
+                  "Time to cook, let's Sign in",
+                  style: TextStyle(color: Colors.grey.shade500, fontSize: 16),
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                Container(
+                  height: 50,
+                  margin: EdgeInsets.only(left: 40, right: 40),
+                  child: TextField(
+                    style: TextStyle(fontSize: 16, color: Colors.white),
+                    decoration: InputDecoration(
+                      hintText: "Email",
+                      hintStyle: TextStyle(color: Colors.grey.shade700),
+                      filled: true,
+                      fillColor: Color(0xff161d27).withOpacity(0.9),
+                      enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(30),
+                          borderSide: BorderSide(color: colors)),
+                      focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(30),
+                          borderSide: BorderSide(color: colors)),
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: 12,
+                ),
+                Container(
+                  height: 50,
+                  margin: EdgeInsets.only(left: 40, right: 40),
+                  child: TextField(
+                    obscureText: true,
+                    style: TextStyle(fontSize: 16, color: Colors.white),
+                    decoration: InputDecoration(
+                      hintText: "Password",
+                      hintStyle: TextStyle(color: Colors.grey.shade700),
+                      filled: true,
+                      fillColor: Color(0xff161d27).withOpacity(0.9),
+                      enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(30),
+                          borderSide: BorderSide(color: colors)),
+                      focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(30),
+                          borderSide: BorderSide(color: colors)),
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: 12,
+                ),
+                Text(
+                  "Forgot Password?",
+                  style: TextStyle(
+                      color: colors, fontSize: 14, fontWeight: FontWeight.bold),
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                Container(
+                  height: 50,
+                  width: double.infinity,
+                  margin: EdgeInsets.only(left: 40, right: 40),
+                  child: FlatButton(
+                    onPressed: () {},
+                    color: colors,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(30),
+                    ),
+                    child: Text(
+                      "SIGN IN",
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 16),
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: 16,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Text(
+                      "It's your first time here?",
+                      style: TextStyle(color: Colors.white),
+                    ),
+                    SizedBox(
+                      width: 8,
+                    ),
+                    Text(
+                      "Sign up",
+                      style:
+                          TextStyle(color: colors, fontWeight: FontWeight.bold),
+                    )
+                  ],
+                ),
+                SizedBox(
+                  height: 30,
+                ),
+              ],
+            ),
+          ),
+        ],
       ),
-    ));
+    );
   }
 }

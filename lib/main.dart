@@ -1,6 +1,6 @@
-import 'package:acv_login_auth/Login_screen/Login_screen.dart';
 import 'package:flare_splash_screen/flare_splash_screen.dart';
 import 'package:flutter/material.dart';
+import 'Login_screen/Login_screen.dart';
 
 void main() => runApp(MyApp());
 
@@ -32,7 +32,7 @@ class Animatation extends StatelessWidget {
   Widget build(BuildContext context) {
     return SplashScreen.navigate(
       name: "assets/ACV Funding.flr",
-      next: LoginScreen(),
+      next: LoginPage(),
       width: double.infinity,
       height: double.infinity,
       alignment: Alignment.center,
