@@ -1,8 +1,19 @@
 import 'package:flare_splash_screen/flare_splash_screen.dart';
 import 'package:flutter/material.dart';
-import 'Login_screen/Login_screen.dart';
+import 'package:provider/provider.dart';
+import 'Home/Login_screen.dart';
+import 'Home/home_screen.dart';
+import 'cwc_email_auth/notifier/auth_notifier.dart';
+import 'cwc_email_auth/screens/feed.dart';
 
-void main() => runApp(MyApp());
+void main() => runApp(MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: (context) => AuthNotifier(),
+        ),
+      ],
+      child: MyApp(),
+    ));
 
 class MyApp extends StatelessWidget {
   @override
@@ -32,7 +43,11 @@ class Animatation extends StatelessWidget {
   Widget build(BuildContext context) {
     return SplashScreen.navigate(
       name: "assets/ACV Funding.flr",
-      next: LoginPage(),
+      next: Consumer<AuthNotifier>(
+        builder: (context, notifier, child) {
+          return notifier.user != null ? Feed() : Login();
+        },
+      ),
       width: double.infinity,
       height: double.infinity,
       alignment: Alignment.center,
