@@ -1,7 +1,7 @@
+import 'package:acv_login_auth/Home/home_screen.dart';
 import 'package:flare_splash_screen/flare_splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'Home/Login_screen.dart';
 import 'Home/home_screen.dart';
 import 'cwc_email_auth/notifier/auth_notifier.dart';
 import 'cwc_email_auth/screens/feed.dart';
@@ -45,7 +45,7 @@ class Animatation extends StatelessWidget {
       name: "assets/ACV Funding.flr",
       next: Consumer<AuthNotifier>(
         builder: (context, notifier, child) {
-          return notifier.user != null ? Feed() : Login();
+          return notifier.user != null ? Feed() : HomeScreen();
         },
       ),
       width: double.infinity,

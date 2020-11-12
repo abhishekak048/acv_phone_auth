@@ -141,6 +141,12 @@ class _LoginState extends State<Login> {
               color: Colors.white38, fontWeight: FontWeight.bold, fontSize: 20),
           filled: true,
           fillColor: Color(0xff161d27).withOpacity(0.9),
+          enabledBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(30),
+              borderSide: BorderSide(color: colors)),
+          focusedBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(30),
+              borderSide: BorderSide(color: colors)),
         ),
         style: TextStyle(fontSize: 18, color: Colors.white),
         keyboardType: TextInputType.emailAddress,
@@ -176,6 +182,12 @@ class _LoginState extends State<Login> {
               color: Colors.white38, fontWeight: FontWeight.bold, fontSize: 20),
           filled: true,
           fillColor: Color(0xff161d27).withOpacity(0.9),
+          enabledBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(30),
+              borderSide: BorderSide(color: colors)),
+          focusedBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(30),
+              borderSide: BorderSide(color: colors)),
         ),
         style: TextStyle(fontSize: 26, color: Colors.white),
         cursorColor: Colors.white,
