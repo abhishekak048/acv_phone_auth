@@ -4,6 +4,7 @@ import 'package:acv_login_auth/cwc_email_auth/model/user.dart';
 import 'package:acv_login_auth/cwc_email_auth/notifier/auth_notifier.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 
 final Color colors = Color(0xfffe9721);
@@ -301,19 +302,20 @@ class _LoginState extends State<Login> {
                     width: double.infinity,
                     margin: EdgeInsets.only(left: 40, right: 40),
                     child: RaisedButton(
-                      color: colors,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(30),
-                      ),
-                      child: Text(
-                        _authMode == AuthMode.Login ? 'Login' : 'Signup',
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 16),
-                      ),
-                      onPressed: () => _submitForm(),
-                    ),
+                        color: colors,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(30),
+                        ),
+                        child: Text(
+                          _authMode == AuthMode.Login ? 'Login' : 'Signup',
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 16),
+                        ),
+                        onPressed: () {
+                          _submitForm();
+                        }),
                   ),
                   SizedBox(
                     height: 16,

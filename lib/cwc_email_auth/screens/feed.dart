@@ -19,7 +19,7 @@ class _FeedState extends State<Feed> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          "Feed",
+          "Login",
         ),
         actions: <Widget>[
           // action button
@@ -34,7 +34,7 @@ class _FeedState extends State<Feed> {
       ),
       body: Center(
           child: Text(
-        "feed",
+        "Login",
         style: TextStyle(fontSize: 50),
       )),
     );
