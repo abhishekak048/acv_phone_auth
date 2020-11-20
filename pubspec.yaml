@@ -32,6 +32,12 @@ dependencies:
   flare_splash_screen: ^2.0.1+2
   firebase_core: ^0.4.4+3
   firebase_auth: ^0.16.0
+  form_field_validator: ^1.0.1
+  flutter_facebook_login: ^3.0.0
+
+  #google_sigin.
+  google_sign_in: ^4.5.3
+
   # cwc dependency
   provider: ^4.1.3
   path: ^1.7.0

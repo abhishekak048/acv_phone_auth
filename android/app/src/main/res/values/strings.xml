@@ -1,0 +1,5 @@
+<resources>
+<string name="app_name">ACV Login</string>
+<string name="facebook_app_id">796572774523258</string>
+<string name="fb_login_protocol_scheme">fb796572774523258</string>
+</resources>
